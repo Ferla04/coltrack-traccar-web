@@ -20,7 +20,10 @@ import NavigationBar from '../common/components/NavigationBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
+    height: `calc(100% - ${theme.mixins.toolbar['@media (min-width:600px)'].minHeight}px)`,
+    [theme.breakpoints.down('sm')]: {
+      height: `calc(100% - ${theme.mixins.toolbar.minHeight}px)`,
+    },
   },
   sidebar: {
     pointerEvents: 'none',
@@ -29,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       position: 'fixed',
       left: 0,
-      top: 0,
-      height: `calc(100% - ${theme.spacing(3)})`,
+      top: 64,
+      height: `calc(100% - ${theme.spacing(12)})`,
       width: theme.dimensions.drawerWidthDesktop,
       margin: theme.spacing(1.5),
       zIndex: 3,
