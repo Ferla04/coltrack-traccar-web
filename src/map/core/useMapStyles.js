@@ -30,7 +30,7 @@ const styleCustom = ({ tiles, minZoom, maxZoom, attribution }) => {
 export default () => {
   const t = useTranslation();
 
-  const mapTilerKey = useAttributePreference('mapTilerKey');
+  const mapTilerKey = useAttributePreference('mapTilerKey') || 'mI0WmUv6wf1YIy3doXzO';
   const locationIqKey = useAttributePreference('locationIqKey') || 'pk.0f147952a41c555a5b70614039fd148b';
   const bingMapsKey = useAttributePreference('bingMapsKey');
   const tomTomKey = useAttributePreference('tomTomKey');
@@ -39,6 +39,13 @@ export default () => {
   const customMapUrl = useSelector((state) => state.session.server.mapUrl);
 
   return useMemo(() => [
+    {
+      id: 'mapTiler',
+      title: 'MapTiler',
+      style: `https://api.maptiler.com/maps/7e5db496-a1e8-4311-add0-90db83b0beb7/style.json?key=${mapTilerKey}`,
+      available: !!mapTilerKey,
+      attribute: 'mapTilerKey',
+    },
     {
       id: 'locationIqStreets',
       title: t('mapLocationIqStreets'),

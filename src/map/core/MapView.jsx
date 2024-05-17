@@ -79,8 +79,8 @@ const MapView = ({ children }) => {
   const [mapReady, setMapReady] = useState(false);
 
   const mapStyles = useMapStyles();
-  const activeMapStyles = useAttributePreference('activeMapStyles', 'locationIqStreets,osm,carto');
-  const [defaultMapStyle] = usePersistedState('selectedMapStyle', usePreference('map', 'locationIqStreets'));
+  const activeMapStyles = useAttributePreference('activeMapStyles', 'mapTiler,locationIqStreets,osm');
+  const [defaultMapStyle] = usePersistedState('selectedMapStyle', usePreference('map', 'mapTiler'));
   const mapboxAccessToken = useAttributePreference('mapboxAccessToken');
   const maxZoom = useAttributePreference('web.maxZoom');
 
