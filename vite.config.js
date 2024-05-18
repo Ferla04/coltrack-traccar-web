@@ -12,6 +12,11 @@ export default defineConfig(() => ({
       '/api': 'http://localhost:8082',
     },
   },
+  preview: {
+    host: '0.0.0.0',
+    port: 4321,
+    strictPort: true,
+  },
   build: {
     outDir: 'build',
   },
