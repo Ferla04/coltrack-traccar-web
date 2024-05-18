@@ -30,7 +30,7 @@ const styleCustom = ({ tiles, minZoom, maxZoom, attribution }) => {
 export default () => {
   const t = useTranslation();
 
-  const mapTilerKey = useAttributePreference('mapTilerKey');
+  const mapTilerKey = useAttributePreference('mapTilerKey') || import.meta.env.VITE_MAPTITLER_API_KEY;
   const locationIqKey = useAttributePreference('locationIqKey') || 'pk.0f147952a41c555a5b70614039fd148b';
   const bingMapsKey = useAttributePreference('bingMapsKey');
   const tomTomKey = useAttributePreference('tomTomKey');
@@ -39,6 +39,13 @@ export default () => {
   const customMapUrl = useSelector((state) => state.session.server.mapUrl);
 
   return useMemo(() => [
+    {
+      id: 'mapTiler',
+      title: 'MapTiler',
+      style: `https://api.maptiler.com/maps/7e5db496-a1e8-4311-add0-90db83b0beb7/style.json?key=${mapTilerKey}`,
+      available: !!mapTilerKey,
+      attribute: 'mapTilerKey',
+    },
     {
       id: 'locationIqStreets',
       title: t('mapLocationIqStreets'),
@@ -77,36 +84,6 @@ export default () => {
         tiles: ['a', 'b', 'c', 'd'].map((i) => `https://${i}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png`),
         maxZoom: 22,
         attribution: '© <a target="_top" rel="noopener" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, © <a target="_top" rel="noopener" href="https://carto.com/attribution">CARTO</a>',
-      }),
-      available: true,
-    },
-    {
-      id: 'googleRoad',
-      title: t('mapGoogleRoad'),
-      style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga`),
-        maxZoom: 20,
-        attribution: '© Google',
-      }),
-      available: true,
-    },
-    {
-      id: 'googleSatellite',
-      title: t('mapGoogleSatellite'),
-      style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga`),
-        maxZoom: 20,
-        attribution: '© Google',
-      }),
-      available: true,
-    },
-    {
-      id: 'googleHybrid',
-      title: t('mapGoogleHybrid'),
-      style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga`),
-        maxZoom: 20,
-        attribution: '© Google',
       }),
       available: true,
     },
