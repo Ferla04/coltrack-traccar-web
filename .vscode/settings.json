@@ -1,0 +1,6 @@
+{
+  "search.exclude": {
+    "**/legacy": true,
+    "**/src/resources/l10n": true
+  }
+}
