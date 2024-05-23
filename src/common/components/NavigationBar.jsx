@@ -12,7 +12,6 @@ import './NavigationBar.css';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: 5,
-    background: 'primary',
   },
   toolbar: {
     display: 'flex',
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navSvg: {
-    fill: theme.palette.secondary.main,
+    fill: '#00B5F1',
     opacity: 0.5,
   },
 }));

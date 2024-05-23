@@ -37,4 +37,18 @@ export default {
       enterNextDelay: 500,
     },
   },
+  MuiPaper: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: theme.palette.background.paper,
+      }),
+    },
+  },
+  MuiAppBar: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: theme.palette.background.main,
+      }),
+    },
+  },
 };
