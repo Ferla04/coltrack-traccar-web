@@ -118,6 +118,7 @@ const MainPage = () => {
           <Paper square elevation={3} className={classes.header}>
             <MainToolbar
               filteredDevices={filteredDevices}
+              desktop={desktop}
               devicesOpen={devicesOpen}
               setDevicesOpen={setDevicesOpen}
               keyword={keyword}

@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainToolbar = ({
   filteredDevices,
+  desktop,
   devicesOpen,
   setDevicesOpen,
   keyword,
@@ -57,11 +58,20 @@ const MainToolbar = ({
 
   const deviceStatusCount = (status) => Object.values(devices).filter((d) => d.status === status).length;
 
+  const setDevicesOpenHandler = (value) => {
+    if (desktop) return;
+    setDevicesOpen(value);
+  };
+
   return (
     <Toolbar ref={toolbarRef} className={classes.toolbar}>
-      <IconButton edge="start" onClick={() => setDevicesOpen(!devicesOpen)}>
-        {devicesOpen ? <MapIcon /> : <ViewListIcon />}
-      </IconButton>
+      {
+        !desktop ? (
+          <IconButton edge="start" onClick={() => setDevicesOpenHandler(!devicesOpen)}>
+            {devicesOpen ? <MapIcon /> : <ViewListIcon />}
+          </IconButton>
+        ) : null
+      }
       <OutlinedInput
         ref={inputRef}
         placeholder={t('sharedSearchDevices')}
@@ -103,7 +113,7 @@ const MainToolbar = ({
           <DeviceRow key={filteredDevices[index].id} data={filteredDevices} index={index} />
         ))}
         {filteredDevices.length > 3 && (
-          <ListItemButton alignItems="center" onClick={() => setDevicesOpen(true)}>
+          <ListItemButton alignItems="center" onClick={() => setDevicesOpenHandler(true)}>
             <ListItemText
               primary={t('notificationAlways')}
               style={{ textAlign: 'center' }}
