@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -58,10 +58,10 @@ const MainToolbar = ({
 
   const deviceStatusCount = (status) => Object.values(devices).filter((d) => d.status === status).length;
 
-  const setDevicesOpenHandler = (value) => {
+  const setDevicesOpenHandler = useCallback((value) => {
     if (desktop) return;
     setDevicesOpen(value);
-  };
+  }, [desktop]);
 
   return (
     <Toolbar ref={toolbarRef} className={classes.toolbar}>
