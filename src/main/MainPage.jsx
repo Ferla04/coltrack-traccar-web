@@ -1,5 +1,6 @@
 import React, {
   useState, useCallback, useEffect,
+  useMemo,
 } from 'react';
 import { Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -17,6 +18,7 @@ import MainToolbar from './MainToolbar';
 import MainMap from './MainMap';
 import { useAttributePreference } from '../common/util/preferences';
 import NavigationBar from '../common/components/NavigationBar';
+import ToggleSidebar from '../common/components/ToggleSidebar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sidebar: {
     pointerEvents: 'none',
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     [theme.breakpoints.up('md')]: {
@@ -95,6 +98,8 @@ const MainPage = () => {
 
   const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen]);
 
+  const toggleSidebarMemo = useMemo(() => (desktop ? <ToggleSidebar /> : null), [desktop]);
+
   useEffect(() => {
     if (!desktop && mapOnSelect && selectedDeviceId) {
       setDevicesOpen(false);
@@ -114,10 +119,14 @@ const MainPage = () => {
             onEventsClick={onEventsClick}
           />
         )}
-        <div className={classes.sidebar}>
+
+        <div id="sidebar" className={classes.sidebar}>
+          { toggleSidebarMemo }
+
           <Paper square elevation={3} className={classes.header}>
             <MainToolbar
               filteredDevices={filteredDevices}
+              desktop={desktop}
               devicesOpen={devicesOpen}
               setDevicesOpen={setDevicesOpen}
               keyword={keyword}
@@ -150,6 +159,7 @@ const MainPage = () => {
             </div>
           )}
         </div>
+
         <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} />
         {selectedDeviceId && (
           <StatusCard
