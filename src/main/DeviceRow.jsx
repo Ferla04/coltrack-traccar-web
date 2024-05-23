@@ -36,7 +36,7 @@ dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme) => ({
   conatiner: {
-    borderBottom: '1px solid #d6d6d6',
+    borderBottom: `1px solid ${theme.palette.mode === 'dark' ? '#444444' : '#d6d6d6'}`,
   },
   listItem: {
     height: 100,
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.error.main,
   },
   neutral: {
-    color: '#66627a',
+    color: theme.palette.mode === 'dark' ? '#d1c8ff' : '#66627a',
   },
   itemTitle: {
     display: 'flex',
