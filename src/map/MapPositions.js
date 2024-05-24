@@ -37,6 +37,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         showDirection = selectedPositionId === position.id && position.course > 0;
         break;
     }
+
     return {
       id: position.id,
       deviceId: position.deviceId,
@@ -46,6 +47,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       color: showStatus ? position.attributes.color || getStatusColor(device.status) : 'neutral',
       rotation: position.course,
       direction: showDirection,
+      adjustSize: (device.category === 'default' || !device.category) && !desktop ? 0.8 : iconScale,
     };
   };
 
@@ -105,7 +107,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         filter: ['!has', 'point_count'],
         layout: {
           'icon-image': '{category}-{color}',
-          'icon-size': iconScale,
+          'icon-size': ['get', 'adjustSize'],
           'icon-allow-overlap': true,
           'text-field': `{${titleField || 'name'}}`,
           'text-allow-overlap': true,
