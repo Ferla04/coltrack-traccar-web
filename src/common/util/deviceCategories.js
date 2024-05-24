@@ -8,6 +8,7 @@ export default [
   'camper',
   'crane',
   'helicopter',
+  'location-pin',
   'motorcycle',
   'offroad',
   'person',

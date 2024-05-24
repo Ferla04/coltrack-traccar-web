@@ -14,6 +14,7 @@ import camperSvg from '../../resources/images/icon/camper.svg';
 import craneSvg from '../../resources/images/icon/crane.svg';
 import defaultSvg from '../../resources/images/icon/default.svg';
 import helicopterSvg from '../../resources/images/icon/helicopter.svg';
+import LocationPinSvg from '../../resources/images/icon/location-pin.svg';
 import motorcycleSvg from '../../resources/images/icon/motorcycle.svg';
 import offroadSvg from '../../resources/images/icon/offroad.svg';
 import personSvg from '../../resources/images/icon/person.svg';
@@ -38,6 +39,7 @@ export const mapIcons = {
   crane: craneSvg,
   default: defaultSvg,
   helicopter: helicopterSvg,
+  'location-pin': LocationPinSvg,
   motorcycle: motorcycleSvg,
   offroad: offroadSvg,
   person: personSvg,
@@ -70,7 +72,12 @@ export default async () => {
     const results = [];
     ['info', 'success', 'error', 'neutral'].forEach((color) => {
       results.push(loadImage(mapIcons[category]).then((icon) => {
-        mapImages[`${category}-${color}`] = prepareIcon(background, icon, mapPalette[color].main);
+        mapImages[`${category}-${color}`] = prepareIcon(
+          background,
+          icon,
+          mapPalette[color].main,
+          category !== 'default',
+        );
       }));
     });
     await Promise.all(results);
