@@ -106,6 +106,12 @@ const MainPage = () => {
     }
   }, [desktop, mapOnSelect, selectedDeviceId]);
 
+  useEffect(() => {
+    if (desktop) {
+      setDevicesOpen(true);
+    }
+  }, [desktop]);
+
   useFilter(keyword, filter, filterSort, filterMap, positions, setFilteredDevices, setFilteredPositions);
 
   return (
