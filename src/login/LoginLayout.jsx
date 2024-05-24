@@ -24,14 +24,11 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    marginTop: 30,
-    marginLeft: 30,
-    width: 230,
-    [theme.breakpoints.down('md')]: {
-      width: 200,
-    },
+    marginTop: 20,
+    marginLeft: 16,
+    width: 200,
     [theme.breakpoints.down('sm')]: {
-      width: 170,
+      width: 160,
     },
   },
   imgLoginImage: {
