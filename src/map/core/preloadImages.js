@@ -14,7 +14,7 @@ import camperSvg from '../../resources/images/icon/camper.svg';
 import craneSvg from '../../resources/images/icon/crane.svg';
 import defaultSvg from '../../resources/images/icon/default.svg';
 import helicopterSvg from '../../resources/images/icon/helicopter.svg';
-import LocationSvg from '../../resources/images/icon/location.svg';
+import LocationPinSvg from '../../resources/images/icon/location-pin.svg';
 import motorcycleSvg from '../../resources/images/icon/motorcycle.svg';
 import offroadSvg from '../../resources/images/icon/offroad.svg';
 import personSvg from '../../resources/images/icon/person.svg';
@@ -39,7 +39,7 @@ export const mapIcons = {
   crane: craneSvg,
   default: defaultSvg,
   helicopter: helicopterSvg,
-  location: LocationSvg,
+  'location-pin': LocationPinSvg,
   motorcycle: motorcycleSvg,
   offroad: offroadSvg,
   person: personSvg,

@@ -117,10 +117,13 @@ const DevicePage = () => {
               <SelectField
                 value={item.category || 'default'}
                 onChange={(event) => setItem({ ...item, category: event.target.value })}
-                data={deviceCategories.map((category) => ({
-                  id: category,
-                  name: t(`category${category.replace(/^\w/, (c) => c.toUpperCase())}`),
-                }))}
+                data={deviceCategories.map((category) => {
+                  const name = category.replace(/^\w/, (c) => c.toUpperCase());
+                  return {
+                    id: category,
+                    name: t(`category${name}`) || name,
+                  };
+                })}
                 label={t('deviceCategory')}
               />
               <SelectField
