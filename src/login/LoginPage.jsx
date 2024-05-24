@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import {
-  useMediaQuery, Select, MenuItem, FormControl, Button, TextField, Link, Snackbar, IconButton, Tooltip, LinearProgress, Box,
+  Select,
+  MenuItem,
+  FormControl,
+  Button,
+  TextField,
+  Link,
+  Snackbar,
+  IconButton,
+  // Tooltip,
+  LinearProgress,
+  Box,
+  Typography,
 } from '@mui/material';
 import ReactCountryFlag from 'react-country-flag';
 import makeStyles from '@mui/styles/makeStyles';
 import CloseIcon from '@mui/icons-material/Close';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { useTheme } from '@mui/material/styles';
+// import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { sessionActions } from '../store';
@@ -15,7 +25,6 @@ import { useLocalization, useTranslation } from '../common/components/Localizati
 import LoginLayout from './LoginLayout';
 import usePersistedState from '../common/util/usePersistedState';
 import { handleLoginTokenListeners, nativeEnvironment, nativePostMessage } from '../common/components/NativeInterface';
-import LogoImage from './LogoImage';
 import { useCatch } from '../reactHelper';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,13 +46,61 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: theme.spacing(4),
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
   },
   registerButton: {
     minWidth: 'unset',
   },
   link: {
     cursor: 'pointer',
+    fontSize: '14px',
+  },
+  button: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: '12px',
+      padding: '0px 16px',
+      height: '30px',
+    },
+  },
+  title: {
+    color: theme.palette.secondary.main,
+    marginBottom: '15px',
+    fontWeight: '500',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '35px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '25px',
+    },
+  },
+  input: {
+    backgroundColor: theme.palette.background.default,
+    borderRadius: '4px',
+    '& input[type=number]': {
+      '-moz-appearance': 'textfield',
+    },
+    '& input[type=number]::-webkit-outer-spin-button': {
+      '-webkit-appearance': 'none',
+      margin: 0,
+    },
+    '& input[type=number]::-webkit-inner-spin-button': {
+      '-webkit-appearance': 'none',
+      margin: 0,
+    },
+    '& input': {
+      [theme.breakpoints.down('md')]: {
+        padding: '18px 10px 4px',
+        fontSize: '15px',
+      },
+    },
+    '& label': {
+      [theme.breakpoints.down('md')]: {
+        fontSize: '15px',
+      },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '14px',
+      },
+    },
   },
 }));
 
@@ -51,7 +108,6 @@ const LoginPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const theme = useTheme();
   const t = useTranslation();
 
   const { languages, language, setLanguage } = useLocalization();
@@ -65,7 +121,7 @@ const LoginPage = () => {
 
   const registrationEnabled = useSelector((state) => state.session.server.registration);
   const languageEnabled = useSelector((state) => !state.session.server.attributes['ui.disableLoginLanguage']);
-  const changeEnabled = useSelector((state) => !state.session.server.attributes.disableChange);
+  // const changeEnabled = useSelector((state) => !state.session.server.attributes.disableChange);
   const emailEnabled = useSelector((state) => state.session.server.emailEnabled);
   const openIdEnabled = useSelector((state) => state.session.server.openIdEnabled);
   const openIdForced = useSelector((state) => state.session.server.openIdEnabled && state.session.server.openIdForce);
@@ -149,13 +205,13 @@ const LoginPage = () => {
   return (
     <LoginLayout>
       <div className={classes.options}>
-        {nativeEnvironment && changeEnabled && (
+        {/* {nativeEnvironment && changeEnabled && (
           <Tooltip title={t('settingsServer')}>
             <IconButton onClick={() => navigate('/change-server')}>
               <LockOpenIcon />
             </IconButton>
           </Tooltip>
-        )}
+        )} */}
         {languageEnabled && (
           <FormControl>
             <Select value={language} onChange={(e) => setLanguage(e.target.value)}>
@@ -171,8 +227,12 @@ const LoginPage = () => {
           </FormControl>
         )}
       </div>
+
+      <Typography variant="h3" className={classes.title}>
+        {t('loginLogin')}
+      </Typography>
+
       <div className={classes.container}>
-        {useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.primary.main} />}
         <TextField
           required
           error={failed}
@@ -183,6 +243,8 @@ const LoginPage = () => {
           autoFocus={!email}
           onChange={(e) => setEmail(e.target.value)}
           helperText={failed && 'Invalid username or password'}
+          variant="filled"
+          className={classes.input}
         />
         <TextField
           required
@@ -194,6 +256,8 @@ const LoginPage = () => {
           autoComplete="current-password"
           autoFocus={!!email}
           onChange={(e) => setPassword(e.target.value)}
+          variant="filled"
+          className={classes.input}
         />
         {codeEnabled && (
           <TextField
@@ -204,6 +268,8 @@ const LoginPage = () => {
             value={code}
             type="number"
             onChange={(e) => setCode(e.target.value)}
+            variant="filled"
+            className={classes.input}
           />
         )}
         <Button
@@ -212,6 +278,7 @@ const LoginPage = () => {
           variant="contained"
           color="secondary"
           disabled={!email || !password || (codeEnabled && !code)}
+          className={classes.button}
         >
           {t('loginLogin')}
         </Button>
@@ -220,6 +287,7 @@ const LoginPage = () => {
             onClick={() => handleOpenIdLogin()}
             variant="contained"
             color="secondary"
+            className={classes.button}
           >
             {t('loginOpenId')}
           </Button>

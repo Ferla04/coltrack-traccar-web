@@ -28,6 +28,42 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     textTransform: 'uppercase',
   },
+  input: {
+    backgroundColor: theme.palette.background.default,
+    borderRadius: '4px',
+    '& input[type=number]': {
+      '-moz-appearance': 'textfield',
+    },
+    '& input[type=number]::-webkit-outer-spin-button': {
+      '-webkit-appearance': 'none',
+      margin: 0,
+    },
+    '& input[type=number]::-webkit-inner-spin-button': {
+      '-webkit-appearance': 'none',
+      margin: 0,
+    },
+    '& input': {
+      [theme.breakpoints.down('md')]: {
+        padding: '18px 10px 4px',
+        fontSize: '15px',
+      },
+    },
+    '& label': {
+      [theme.breakpoints.down('md')]: {
+        fontSize: '15px',
+      },
+      [theme.breakpoints.down('sm')]: {
+        fontSize: '14px',
+      },
+    },
+  },
+  button: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: '12px',
+      padding: '0px 16px',
+      height: '30px',
+    },
+  },
 }));
 
 const RegisterPage = () => {
@@ -75,11 +111,11 @@ const RegisterPage = () => {
       <div className={classes.container}>
         <div className={classes.header}>
           {!server.newServer && (
-            <IconButton color="primary" onClick={() => navigate('/login')}>
+            <IconButton color="secondary" onClick={() => navigate('/login')}>
               <ArrowBackIcon />
             </IconButton>
           )}
-          <Typography className={classes.title} color="primary">
+          <Typography className={classes.title} color="secondary">
             {t('loginRegister')}
           </Typography>
         </div>
@@ -91,6 +127,8 @@ const RegisterPage = () => {
           autoComplete="name"
           autoFocus
           onChange={(event) => setName(event.target.value)}
+          variant="filled"
+          className={classes.input}
         />
         <TextField
           required
@@ -100,6 +138,8 @@ const RegisterPage = () => {
           value={email}
           autoComplete="email"
           onChange={(event) => setEmail(event.target.value)}
+          variant="filled"
+          className={classes.input}
         />
         <TextField
           required
@@ -109,6 +149,8 @@ const RegisterPage = () => {
           type="password"
           autoComplete="current-password"
           onChange={(event) => setPassword(event.target.value)}
+          variant="filled"
+          className={classes.input}
         />
         {totpForce && (
           <TextField
@@ -119,6 +161,8 @@ const RegisterPage = () => {
             InputProps={{
               readOnly: true,
             }}
+            variant="filled"
+            className={classes.input}
           />
         )}
         <Button
@@ -128,6 +172,7 @@ const RegisterPage = () => {
           type="submit"
           disabled={!name || !password || !(server.newServer || /(.+)@(.+)\.(.{2,})/.test(email))}
           fullWidth
+          className={classes.button}
         >
           {t('loginRegister')}
         </Button>
