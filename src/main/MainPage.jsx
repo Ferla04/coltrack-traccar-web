@@ -27,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
       height: `calc(100% - ${theme.mixins.toolbar.minHeight}px)`,
     },
   },
-  paper: {
-    backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
-  },
   sidebar: {
     pointerEvents: 'none',
     position: 'relative',
@@ -133,7 +130,7 @@ const MainPage = () => {
         <div id="sidebar" className={classes.sidebar}>
           { toggleSidebarMemo }
 
-          <Paper square elevation={3} className={`${classes.header} ${classes.paper}`}>
+          <Paper square elevation={3} className={`${classes.header}`}>
             <MainToolbar
               filteredDevices={filteredDevices}
               desktop={desktop}
@@ -159,7 +156,7 @@ const MainPage = () => {
                 />
               </div>
             )}
-            <Paper square className={`${classes.contentList} ${classes.paper}`} style={devicesOpen ? {} : { visibility: 'hidden' }}>
+            <Paper square className={`${classes.contentList}`} style={devicesOpen ? {} : { visibility: 'hidden' }}>
               <DeviceList devices={filteredDevices} />
             </Paper>
           </div>

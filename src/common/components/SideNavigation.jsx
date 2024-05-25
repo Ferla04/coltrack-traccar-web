@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const SideNavigationButton = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -41,7 +41,7 @@ const SideNavigation = ({ open, setOpen }) => {
   };
 
   return (
-    <Drawer className={classes.drawer} open={open} anchor="right" onClose={toggleDrawer(false)}>
+    <Drawer className={`${classes.drawer} without-bg-i`} open={open} anchor="right" onClose={toggleDrawer(false)}>
       <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
