@@ -5,12 +5,12 @@ import {
   AppBar, Toolbar, Container,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { nativePostMessage } from './NativeInterface';
-import { sessionActions } from '../../store';
+import { nativePostMessage } from '../common/components/NativeInterface';
 
-import Logo from '../../resources/images/logo.png';
+import Logo from '../resources/images/logo.png';
 import './NavigationBar.css';
 import { SideNavigationButton } from './SideNavigation';
+import { sessionActions } from '../store';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -30,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
   navSvg: {
     fill: '#00B5F1',
     opacity: 0.5,
+  },
+  navButtonsConatiner: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 7,
   },
 }));
 
@@ -77,7 +82,7 @@ const NavigationBar = () => {
           <Toolbar className={classes.toolbar} disableGutters>
             <img src={Logo} className={classes.navImg} alt="coltrack-logo" />
 
-            <div>
+            <div className={classes.navButtonsConatiner}>
               <SideNavigationButton />
 
               <button
@@ -92,7 +97,7 @@ const NavigationBar = () => {
                     className={classes.navSvg}
                     d="M320 448c0-17.7 14.3-32 32-32l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32z"
                   />
-                  <path d="M342.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z" />
+                  <path d="M217 401L345 273c9.4-9.4 9.4-24.6 0-33.9L217 111c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l87 87L24 232c-13.3 0-24 10.7-24 24s10.7 24 24 24l246.1 0-87 87c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9" />
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path

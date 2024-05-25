@@ -17,8 +17,9 @@ import useFilter from './useFilter';
 import MainToolbar from './MainToolbar';
 import MainMap from './MainMap';
 import { useAttributePreference } from '../common/util/preferences';
-import NavigationBar from '../common/components/NavigationBar';
+// import NavigationBar from '../common/components/NavigationBar';
 import ToggleSidebar from '../common/components/ToggleSidebar';
+import NavigationBar from '../nav/NavigationBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
