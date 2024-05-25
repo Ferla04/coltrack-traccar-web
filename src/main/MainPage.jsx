@@ -8,7 +8,6 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import DeviceList from './DeviceList';
-import BottomMenu from '../common/components/BottomMenu';
 import StatusCard from '../common/components/StatusCard';
 import { devicesActions } from '../store';
 import usePersistedState from '../common/util/usePersistedState';
@@ -17,8 +16,9 @@ import useFilter from './useFilter';
 import MainToolbar from './MainToolbar';
 import MainMap from './MainMap';
 import { useAttributePreference } from '../common/util/preferences';
-import NavigationBar from '../common/components/NavigationBar';
+// import NavigationBar from '../common/components/NavigationBar';
 import ToggleSidebar from '../common/components/ToggleSidebar';
+import NavigationBar from '../nav/NavigationBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -117,6 +117,7 @@ const MainPage = () => {
   return (
     <>
       <NavigationBar />
+
       <div className={classes.root}>
         {desktop && (
           <MainMap
@@ -129,7 +130,7 @@ const MainPage = () => {
         <div id="sidebar" className={classes.sidebar}>
           { toggleSidebarMemo }
 
-          <Paper square elevation={3} className={classes.header}>
+          <Paper square elevation={3} className={`${classes.header}`}>
             <MainToolbar
               filteredDevices={filteredDevices}
               desktop={desktop}
@@ -155,15 +156,10 @@ const MainPage = () => {
                 />
               </div>
             )}
-            <Paper square className={classes.contentList} style={devicesOpen ? {} : { visibility: 'hidden' }}>
+            <Paper square className={`${classes.contentList}`} style={devicesOpen ? {} : { visibility: 'hidden' }}>
               <DeviceList devices={filteredDevices} />
             </Paper>
           </div>
-          {desktop && (
-            <div className={classes.footer}>
-              <BottomMenu />
-            </div>
-          )}
         </div>
 
         <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} />
