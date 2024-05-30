@@ -5,6 +5,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../common/components/LocalizationProvider';
 
@@ -29,18 +30,7 @@ const routes = () => {
       title: t('reportTitle'),
       route: '/reports/combined',
       icon: <DescriptionIcon />,
-      dropdown: [
-        {
-          title: 'prueba12',
-          route: '/',
-          icon: <PersonIcon />,
-        },
-        {
-          title: 'prueba23',
-          route: '/',
-          icon: <PersonIcon />,
-        },
-      ],
+      dropdown: [],
     },
     {
       title: t('settingsTitle'),
@@ -62,11 +52,6 @@ const routes = () => {
           route: '/',
           icon: <PersonIcon />,
         },
-        {
-          title: 'prueba4',
-          route: '/',
-          icon: <PersonIcon />,
-        },
       ],
     },
   ], [t]);
@@ -74,11 +59,11 @@ const routes = () => {
 
 const DropdownMenuItem = ({ dropdown }) => (
   <section className="sub-menu">
-    <ul className="list-item">
+    <ul className="list-item" data-children-count={dropdown.length > 5}>
       {
         dropdown.map(({ title, route, icon }) => (
           <li key={`route-${title}`}>
-            <Link href={route}>
+            <Link to={route}>
               {icon}
               {title}
             </Link>
@@ -95,13 +80,16 @@ const DropdownMenu = () => {
     <nav className="dropdown-menu">
       <ul>
         {
-          routes().map(({ title, route, icon, dropdown }) => {
+          routes().map(({ title, route, dropdown }) => {
             const activeDropdown = dropdown.length > 0;
             return (
-              <li key={`route-${title}`} className={activeDropdown ? 'dropdown-item-has-children' : ''}>
-                <Link href={route}>
-                  { icon }
+              <li
+                key={`route-${title}`}
+                className={activeDropdown ? 'dropdown-item-has-children' : ''}
+              >
+                <Link to={route}>
                   { title }
+                  { activeDropdown ? <KeyboardArrowDownIcon /> : null }
                 </Link>
 
                 {
