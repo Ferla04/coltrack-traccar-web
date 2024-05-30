@@ -1,73 +1,23 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import './DropdownMenu.css';
-import { useSelector } from 'react-redux';
-import DescriptionIcon from '@mui/icons-material/Description';
-import SettingsIcon from '@mui/icons-material/Settings';
-import MapIcon from '@mui/icons-material/Map';
-import PersonIcon from '@mui/icons-material/Person';
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
-import { useTranslation } from '../common/components/LocalizationProvider';
-
-const routes = () => {
-  const t = useTranslation();
-  const user = useSelector((state) => state.session.user);
-
-  return useMemo(() => [
-    {
-      title: t('mapTitle'),
-      route: '/',
-      icon: <MapIcon />,
-      dropdown: [],
-    },
-    {
-      title: t('settingsUser'),
-      route: `/settings/user/${user.id}`,
-      icon: <PersonIcon />,
-      dropdown: [],
-    },
-    {
-      title: t('reportTitle'),
-      route: '/reports/combined',
-      icon: <DescriptionIcon />,
-      dropdown: [],
-    },
-    {
-      title: t('settingsTitle'),
-      route: '/settings/preferences',
-      icon: <SettingsIcon />,
-      dropdown: [
-        {
-          title: 'prueba1',
-          route: '/',
-          icon: <PersonIcon />,
-        },
-        {
-          title: 'prueba2',
-          route: '/',
-          icon: <PersonIcon />,
-        },
-        {
-          title: 'prueba3',
-          route: '/',
-          icon: <PersonIcon />,
-        },
-      ],
-    },
-  ], [t]);
-};
+import DropdownRoutes from './constants';
 
 const DropdownMenuItem = ({ dropdown }) => (
   <section className="sub-menu">
-    <ul className="list-item" data-children-count={dropdown.length > 5}>
+    <ul className="list-item" data-children-count={dropdown.length > 12}>
       {
-        dropdown.map(({ title, route, icon }) => (
-          <li key={`route-${title}`}>
-            <Link to={route}>
-              {icon}
-              {title}
-            </Link>
-          </li>
+        dropdown.map(({ title, route, icon, active }) => (
+          active === false ? null : (
+            <li key={`route-${title}`}>
+              <Link to={route}>
+                {icon}
+                {title}
+              </Link>
+            </li>
+          )
         ))
       }
     </ul>
@@ -75,13 +25,14 @@ const DropdownMenuItem = ({ dropdown }) => (
 );
 
 const DropdownMenu = () => {
-  console.log('menu');
+  const routes = Object.values(DropdownRoutes());
   return (
     <nav className="dropdown-menu">
       <ul>
         {
-          routes().map(({ title, route, dropdown }) => {
+          routes.map(({ title, route, dropdown, active }) => {
             const activeDropdown = dropdown.length > 0;
+            if (active === false) return null;
             return (
               <li
                 key={`route-${title}`}
