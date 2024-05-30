@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-  AppBar, Toolbar, Container,
-} from '@mui/material';
+import { AppBar, Toolbar, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { SideNavigationButton } from './SideNavigation';
 
 import Logo from '../resources/images/logo.png';
 import './NavigationBar.css';
 import Logout from './Logout';
+import DropdownMenu from './DropdownMenu';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -15,8 +13,11 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'space-between',
+    gap: 30,
     alignItems: 'center',
+    '& > :last-child': {
+      marginLeft: 'auto',
+    },
   },
   navImg: {
     width: 160,
@@ -36,10 +37,10 @@ const NavigationBar = () => {
     <div className="without-bg-i">
       <AppBar className={classes.appBar} position="sticky">
         <Container maxWidth={false}>
-          <Toolbar id="navigation-bar" disableGutters>
-            <SideNavigationButton />
-
+          <Toolbar className={classes.toolbar} disableGutters>
             <img src={Logo} className={classes.navImg} alt="coltrack-logo" />
+
+            <DropdownMenu />
 
             <Logout />
           </Toolbar>
