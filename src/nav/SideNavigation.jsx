@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
     '& svg, & span': {
       color: '#fff',
     },
+    '& .Mui-selected, & .Mui-selected:hover': {
+      backgroundColor: '#00b5f129',
+    },
+    '& .MuiButtonBase-root:hover': {
+      backgroundColor: '#ffffff14',
+    },
   },
 }));
 
