@@ -13,7 +13,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const SideNavigationButton = () => {
+const SideNavigationView = ({ open, setOpen }) => {
+  const classes = useStyles();
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+  return (
+    <Drawer className={`${classes.drawer} without-bg-i`} open={open} anchor="right" onClose={toggleDrawer(false)}>
+      <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+        <SideNavigationItems />
+      </Box>
+    </Drawer>
+  );
+};
+
+const SideNavigation = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -32,24 +48,8 @@ export const SideNavigationButton = () => {
         </svg>
       </IconButton>
 
-      <SideNavigation open={open} setOpen={setOpen} />
+      <SideNavigationView open={open} setOpen={setOpen} />
     </>
-  );
-};
-
-const SideNavigation = ({ open, setOpen }) => {
-  const classes = useStyles();
-
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
-
-  return (
-    <Drawer className={`${classes.drawer} without-bg-i`} open={open} anchor="right" onClose={toggleDrawer(false)}>
-      <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-        <SideNavigationItems />
-      </Box>
-    </Drawer>
   );
 };
 

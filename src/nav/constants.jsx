@@ -30,7 +30,7 @@ import { useAdministrator, useManager, useRestriction } from '../common/util/per
 import { useTranslation } from '../common/components/LocalizationProvider';
 import useFeatures from '../common/util/useFeatures';
 
-const DropdownRoutes = () => {
+const NavRoutes = () => {
   const t = useTranslation();
   const admin = useAdministrator();
   const disableReports = useRestriction('disableReports');
@@ -212,4 +212,4 @@ const DropdownRoutes = () => {
   }), [t, user, disableReports, readonly, admin, features, supportLink, manager]);
 };
 
-export default DropdownRoutes;
+export default NavRoutes;
