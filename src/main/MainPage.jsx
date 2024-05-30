@@ -99,6 +99,7 @@ const MainPage = () => {
   const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen]);
 
   const toggleSidebarMemo = useMemo(() => (desktop ? <ToggleSidebar /> : null), [desktop]);
+  const NavigationBarMemo = useMemo(() => <NavigationBar />, [desktop]);
 
   useEffect(() => {
     if (!desktop && mapOnSelect && selectedDeviceId) {
@@ -116,7 +117,7 @@ const MainPage = () => {
 
   return (
     <>
-      <NavigationBar />
+      { NavigationBarMemo }
 
       <div className={classes.root}>
         {desktop && (
