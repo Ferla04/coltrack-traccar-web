@@ -3,7 +3,6 @@ import './DropdownMenu.css';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Link } from 'react-router-dom';
-import DropdownRoutes from './constants';
 
 const DropdownMenuItem = ({ dropdown }) => (
   <section className="sub-menu">
@@ -24,13 +23,13 @@ const DropdownMenuItem = ({ dropdown }) => (
   </section>
 );
 
-const DropdownMenu = () => {
-  const routes = Object.values(DropdownRoutes());
+const DropdownMenu = ({ routes }) => {
+  const dropdownRoutes = Object.values(routes);
   return (
     <nav className="dropdown-menu">
       <ul>
         {
-          routes.map(({ title, route, dropdown, active }) => {
+          dropdownRoutes.map(({ title, route, dropdown, active }) => {
             const activeDropdown = dropdown.length > 0;
             if (active === false) return null;
             return (

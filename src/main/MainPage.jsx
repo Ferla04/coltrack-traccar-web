@@ -22,9 +22,9 @@ import NavigationBar from '../nav/NavigationBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: `calc(100% - ${theme.mixins.toolbar['@media (min-width:600px)'].minHeight}px)`,
+    height: `calc(100vh - ${theme.mixins.toolbar['@media (min-width:600px)'].minHeight}px)`,
     [theme.breakpoints.down('sm')]: {
-      height: `calc(100% - ${theme.mixins.toolbar.minHeight}px)`,
+      height: `calc(100vh - ${theme.mixins.toolbar.minHeight}px)`,
     },
   },
   sidebar: {
@@ -99,7 +99,6 @@ const MainPage = () => {
   const onEventsClick = useCallback(() => setEventsOpen(true), [setEventsOpen]);
 
   const toggleSidebarMemo = useMemo(() => (desktop ? <ToggleSidebar /> : null), [desktop]);
-  const NavigationBarMemo = useMemo(() => <NavigationBar />, [desktop]);
 
   useEffect(() => {
     if (!desktop && mapOnSelect && selectedDeviceId) {
@@ -117,7 +116,9 @@ const MainPage = () => {
 
   return (
     <>
-      { NavigationBarMemo }
+      {desktop && (
+        <NavigationBar />
+      )}
 
       <div className={classes.root}>
         {desktop && (
