@@ -1,85 +1,60 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import {
-  List, ListItem, ListItemButton, ListItemIcon,
-  ListItemText,
+  Collapse, ListItemButton, ListItemIcon, ListItemText,
 } from '@mui/material';
-import DescriptionIcon from '@mui/icons-material/Description';
-import SettingsIcon from '@mui/icons-material/Settings';
-import MapIcon from '@mui/icons-material/Map';
-import PersonIcon from '@mui/icons-material/Person';
-import { useTranslation } from '../common/components/LocalizationProvider';
-import { useRestriction } from '../common/util/permissions';
+import { Link } from 'react-router-dom';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
-const NavigationItem = ({ action, text, icon }) => (
-  <ListItem disablePadding onClick={action}>
-    <ListItemButton>
-      <ListItemIcon style={{ color: '#fff' }}>
-        {icon}
-      </ListItemIcon>
-      <ListItemText style={{ color: '#fff' }} primary={text} />
-    </ListItemButton>
-  </ListItem>
+export const SideNavigationSingleLevel = ({
+  sub = false,
+  closeDrawer,
+  selected,
+  title,
+  route,
+  icon,
+  active,
+}) => (
+  active === false ? null : (
+    <Link to={route} onClick={closeDrawer}>
+      <ListItemButton selected={selected} sx={{ pl: sub ? 5 : 2 }}>
+        <ListItemIcon>
+          { icon }
+        </ListItemIcon>
+        <ListItemText primary={title} />
+      </ListItemButton>
+    </Link>
+  )
 );
 
-const SideNavigationItems = () => {
-  const navigate = useNavigate();
-  const t = useTranslation();
+export const SideNavigationMultiLevel = ({
+  closeDrawer, pathname, dropdown, icon, active, title,
+}) => {
+  if (active === false) return null;
 
-  const readonly = useRestriction('readonly');
-  const disableReports = useRestriction('disableReports');
-  const user = useSelector((state) => state.session.user);
-
-  const handleSelection = (value) => {
-    switch (value) {
-      case 'map':
-        navigate('/');
-        break;
-      case 'reports':
-        navigate('/reports/combined');
-        break;
-      case 'settings':
-        navigate('/settings/preferences');
-        break;
-      case 'account':
-        navigate(`/settings/user/${user.id}`);
-        break;
-      default:
-        break;
-    }
-  };
+  const [open, setOpen] = useState(false);
 
   return (
-    <List>
-      <NavigationItem
-        action={() => handleSelection('map')}
-        text={t('mapTitle')}
-        icon={<MapIcon />}
-      />
-
-      { !disableReports && (
-        <NavigationItem
-          action={() => handleSelection('reports')}
-          text={t('reportTitle')}
-          icon={<DescriptionIcon />}
-        />
-      )}
-
-      <NavigationItem
-        action={() => handleSelection('settings')}
-        text={t('settingsTitle')}
-        icon={<SettingsIcon />}
-      />
-
-      { !readonly && (
-        <NavigationItem
-          action={() => handleSelection('account')}
-          text={t('settingsUser')}
-          icon={<PersonIcon />}
-        />
-      )}
-    </List>
+    <div>
+      <ListItemButton onClick={() => setOpen(!open)}>
+        <ListItemIcon>
+          { icon }
+        </ListItemIcon>
+        <ListItemText primary={title} />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        {
+          dropdown.map((props) => (
+            <SideNavigationSingleLevel
+              key={`multi-single-${props.route}`}
+              sub
+              closeDrawer={closeDrawer}
+              selected={pathname === props.route}
+              {...props}
+            />
+          ))
+        }
+      </Collapse>
+    </div>
   );
 };
-export default SideNavigationItems;
