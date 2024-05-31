@@ -51,28 +51,6 @@ const DropdownMenu = ({ routes }) => {
             );
           })
         }
-        {/* <li>
-          <a href="#">Mapa</a>
-        </li>
-        <li>
-          <a href="#">Cuenta</a>
-        </li>
-        <li className="dropdown-item-has-children">
-          <a href="#">
-            Ajustes
-            <i className="fas fa-angle-down" />
-          </a>
-          <div className="sub-menu">
-            <ul className="list-item">
-              <li>
-                <a href="#">
-                  <i className="fas fa-heart" />
-                  Preferencias
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li> */}
       </ul>
     </nav>
   );
