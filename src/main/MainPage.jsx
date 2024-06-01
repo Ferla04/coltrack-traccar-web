@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
       left: 0,
       top: 64,
       height: `calc(100% - ${theme.spacing(12)})`,
-      width: `calc(${theme.dimensions.drawerWidthDesktop} + 17px)`,
+      width: `calc(${theme.dimensions.drawerWidthDesktop} + 80px)`,
       margin: theme.spacing(1.5),
       zIndex: 3,
       padding: 15,
