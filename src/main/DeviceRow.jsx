@@ -40,8 +40,9 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.mode === 'dark' ? '#444444' : '#d6d6d6'}`,
   },
   listItem: {
-    height: 100,
+    height: '100%',
     alignItems: 'start',
+    padding: 16,
   },
   icon: {
     width: '25px',
@@ -76,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: theme.palette.primary.main,
     fontSize: 14,
   },
   itemLocation: {

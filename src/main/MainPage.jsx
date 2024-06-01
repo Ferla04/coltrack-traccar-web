@@ -67,9 +67,15 @@ const useStyles = makeStyles((theme) => ({
     gridArea: '1 / 1',
   },
   contentList: {
+    backgroundColor: theme.palette.mode === 'light' && theme.palette.background.default,
+    boxShadow: 'none',
     pointerEvents: 'auto',
     gridArea: '1 / 1',
     zIndex: 4,
+    [theme.breakpoints.up('md')]: {
+      borderRadius: 10,
+      overflow: 'hidden',
+    },
   },
 }));
 
@@ -162,7 +168,11 @@ const MainPage = () => {
                 />
               </div>
             )}
-            <Paper square className={`${classes.contentList}`} style={devicesOpen ? {} : { visibility: 'hidden' }}>
+            <Paper
+              square
+              className={`${classes.contentList}`}
+              style={devicesOpen ? {} : { visibility: 'hidden' }}
+            >
               <DeviceList devices={filteredDevices} />
             </Paper>
           </div>
