@@ -47,7 +47,7 @@ body::-webkit-scrollbar-thumb {
   text-transform: none;
   border-radius: 0;
   box-shadow: none;
-  height: 42px;
+  height: min-content;
   line-height: 1.3;
   transition: opacity 0.3s;
   color: #fff;
