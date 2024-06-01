@@ -16,11 +16,13 @@ import { FilterIcon } from '../resources/imagesJsx/Images';
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
-    gap: theme.spacing(2),
-    padding: 0,
-    paddingRight: 12,
-    paddingBottom: 20,
-    minHeight: 'max-content',
+    gap: theme.spacing(1.5),
+    padding: '15px 20px',
+    [theme.breakpoints.up('md')]: {
+      padding: 0,
+      paddingBottom: 15,
+      minHeight: 'max-content',
+    },
     '& .filter-icon': {
       fill: theme.palette.primary.main,
     },
@@ -41,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   addDevice: {
     backgroundColor: theme.palette.primary.main,
+    margin: 0,
     width: 30,
     height: 30,
     color: '#fff',
