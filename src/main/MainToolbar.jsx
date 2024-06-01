@@ -8,15 +8,29 @@ import { makeStyles, useTheme } from '@mui/styles';
 import MapIcon from '@mui/icons-material/Map';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import AddIcon from '@mui/icons-material/Add';
-import TuneIcon from '@mui/icons-material/Tune';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import { useDeviceReadonly } from '../common/util/permissions';
 import DeviceRow from './DeviceRow';
+import { FilterIcon } from '../resources/imagesJsx/Images';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
-    gap: theme.spacing(1),
+    gap: theme.spacing(2),
+    padding: 0,
+    paddingRight: 12,
+    paddingBottom: 20,
+    minHeight: 'max-content',
+    '& .filter-icon': {
+      fill: theme.palette.primary.main,
+    },
+    '& > .MuiOutlinedInput-root': {
+      paddingRight: 8,
+      backgroundColor: theme.palette.mode === 'light' && '#afd8ff',
+      '& > input::placeholder': {
+        opacity: 0.7,
+      },
+    },
   },
   filterPanel: {
     display: 'flex',
@@ -24,6 +38,16 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     gap: theme.spacing(2),
     width: theme.dimensions.drawerWidthTablet,
+  },
+  addDevice: {
+    backgroundColor: theme.palette.primary.main,
+    width: 30,
+    height: 30,
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      opacity: 0.8,
+    },
   },
 }));
 
@@ -83,7 +107,7 @@ const MainToolbar = ({
           <InputAdornment position="end">
             <IconButton size="small" edge="end" onClick={() => setFilterAnchorEl(inputRef.current)}>
               <Badge color="info" variant="dot" invisible={!filter.statuses.length && !filter.groups.length}>
-                <TuneIcon fontSize="small" />
+                <FilterIcon />
               </Badge>
             </IconButton>
           </InputAdornment>
@@ -178,7 +202,7 @@ const MainToolbar = ({
           </FormGroup>
         </div>
       </Popover>
-      <IconButton edge="end" onClick={() => navigate('/settings/device')} disabled={deviceReadonly}>
+      <IconButton className={classes.addDevice} edge="end" onClick={() => navigate('/settings/device')} disabled={deviceReadonly}>
         <Tooltip open={!deviceReadonly && Object.keys(devices).length === 0} title={t('deviceRegisterFirst')} arrow>
           <AddIcon />
         </Tooltip>

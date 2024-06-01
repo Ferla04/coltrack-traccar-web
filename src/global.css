@@ -24,6 +24,7 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid var(--scrollbarBG);
 }
 
-.without-bg-i .MuiPaper-root{
+.without-bg-i .MuiPaper-root,
+.without-bg-i.MuiPaper-root {
   background-image: none;
 }

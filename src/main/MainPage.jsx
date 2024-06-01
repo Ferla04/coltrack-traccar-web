@@ -37,9 +37,12 @@ const useStyles = makeStyles((theme) => ({
       left: 0,
       top: 64,
       height: `calc(100% - ${theme.spacing(12)})`,
-      width: theme.dimensions.drawerWidthDesktop,
+      width: `calc(${theme.dimensions.drawerWidthDesktop} + 17px)`,
       margin: theme.spacing(1.5),
       zIndex: 3,
+      padding: 15,
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: 10,
     },
     [theme.breakpoints.down('md')]: {
       height: '100%',
@@ -49,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     pointerEvents: 'auto',
     zIndex: 6,
+    boxShadow: 'none',
   },
   footer: {
     pointerEvents: 'auto',
@@ -132,7 +136,7 @@ const MainPage = () => {
         <div id="sidebar" className={classes.sidebar}>
           { toggleSidebarMemo }
 
-          <Paper square elevation={3} className={`${classes.header}`}>
+          <Paper square elevation={3} className={`${classes.header} without-bg-i`}>
             <MainToolbar
               filteredDevices={filteredDevices}
               desktop={desktop}
