@@ -37,9 +37,12 @@ const useStyles = makeStyles((theme) => ({
       left: 0,
       top: 64,
       height: `calc(100% - ${theme.spacing(12)})`,
-      width: theme.dimensions.drawerWidthDesktop,
+      width: `calc(${theme.dimensions.drawerWidthDesktop} + 80px)`,
       margin: theme.spacing(1.5),
       zIndex: 3,
+      padding: 15,
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: 10,
     },
     [theme.breakpoints.down('md')]: {
       height: '100%',
@@ -49,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     pointerEvents: 'auto',
     zIndex: 6,
+    boxShadow: 'none',
   },
   footer: {
     pointerEvents: 'auto',
@@ -63,9 +67,15 @@ const useStyles = makeStyles((theme) => ({
     gridArea: '1 / 1',
   },
   contentList: {
+    backgroundColor: theme.palette.mode === 'light' && theme.palette.background.default,
+    boxShadow: 'none',
     pointerEvents: 'auto',
     gridArea: '1 / 1',
     zIndex: 4,
+    [theme.breakpoints.up('md')]: {
+      borderRadius: 10,
+      overflow: 'hidden',
+    },
   },
 }));
 
@@ -132,7 +142,7 @@ const MainPage = () => {
         <div id="sidebar" className={classes.sidebar}>
           { toggleSidebarMemo }
 
-          <Paper square elevation={3} className={`${classes.header}`}>
+          <Paper square elevation={3} className={`${classes.header} without-bg-i`}>
             <MainToolbar
               filteredDevices={filteredDevices}
               desktop={desktop}
@@ -158,7 +168,11 @@ const MainPage = () => {
                 />
               </div>
             )}
-            <Paper square className={`${classes.contentList}`} style={devicesOpen ? {} : { visibility: 'hidden' }}>
+            <Paper
+              square
+              className={`${classes.contentList}`}
+              style={devicesOpen ? {} : { visibility: 'hidden' }}
+            >
               <DeviceList devices={filteredDevices} />
             </Paper>
           </div>
