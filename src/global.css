@@ -34,8 +34,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .quantity-buttons button {
-  --all-option-color: #ae66bb;
-  --online-option-color: #66bb6a;
+  --all-option-color: #051f38;
+  --online-option-color: #6bb0e7;
   --offline-option-color: #b74848;
   --unknow-option-color: #616161;
   display: flex;

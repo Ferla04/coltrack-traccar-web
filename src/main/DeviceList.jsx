@@ -10,6 +10,9 @@ import DeviceRow from './DeviceRow';
 const useStyles = makeStyles(() => ({
   list: {
     maxHeight: '100%',
+    '& > div': {
+      scrollbarWidth: 'thin',
+    },
   },
   listInner: {
     position: 'relative',

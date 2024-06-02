@@ -18,14 +18,14 @@ const useStyles = makeStyles((theme) => ({
   toolbarContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 12,
-    padding: '0 20px 15px',
+    gap: 9,
+    padding: '0 20px 10px',
     [theme.breakpoints.up('md')]: {
       paddingRight: 0,
       paddingLeft: 0,
     },
     [theme.breakpoints.down('md')]: {
-      gap: 5,
+      gap: 0,
     },
   },
   toolbar: {

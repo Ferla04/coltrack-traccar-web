@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       position: 'fixed',
       left: 0,
-      top: 64,
-      height: `calc(100% - ${theme.spacing(12)})`,
+      top: 60,
+      height: `calc(100% - ${theme.spacing(10)})`,
       width: `calc(${theme.dimensions.drawerWidthDesktop} + 80px)`,
       margin: theme.spacing(1.5),
       zIndex: 3,
@@ -67,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
     gridArea: '1 / 1',
   },
   contentList: {
-    backgroundColor: theme.palette.mode === 'light' && theme.palette.background.default,
     boxShadow: 'none',
     pointerEvents: 'auto',
     gridArea: '1 / 1',
