@@ -49,7 +49,7 @@ import CommandDevicePage from './settings/CommandDevicePage';
 import CommandGroupPage from './settings/CommandGroupPage';
 import App from './App';
 import ChangeServerPage from './login/ChangeServerPage';
-import DevicesPage from './settings/DevicesPage';
+// import DevicesPage from './settings/DevicesPage';
 import ScheduledPage from './reports/ScheduledPage';
 import DeviceConnectionsPage from './settings/DeviceConnectionsPage';
 import GroupConnectionsPage from './settings/GroupConnectionsPage';
@@ -57,6 +57,7 @@ import UserConnectionsPage from './settings/UserConnectionsPage';
 import LogsPage from './reports/LogsPage';
 import SharePage from './settings/SharePage';
 import AnnouncementPage from './settings/AnnouncementPage';
+import DevicesDatatable from './datatable/DevicesDatatable';
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -122,7 +123,8 @@ const Navigation = () => {
           <Route path="attributes" element={<ComputedAttributesPage />} />
           <Route path="attribute/:id" element={<ComputedAttributePage />} />
           <Route path="attribute" element={<ComputedAttributePage />} />
-          <Route path="devices" element={<DevicesPage />} />
+          {/* <Route path="devices" element={<DevicesPage />} /> */}
+          <Route path="devices" element={<DevicesDatatable />} />
           <Route path="device/:id/connections" element={<DeviceConnectionsPage />} />
           <Route path="device/:id/command" element={<CommandDevicePage />} />
           <Route path="device/:id/share" element={<SharePage />} />
