@@ -1,0 +1,82 @@
+#data-table {
+  margin: 0 auto;
+  padding: var(--map-padding-y) 30px;
+  width: 100%;
+  overflow: auto;
+}
+
+#data-table h2 {
+  color: #949899;
+  margin: 20px 0;
+}
+
+#data-grid {
+  margin-top: 20px;
+}
+
+#data-grid .ag-grid-theme {
+  --ag-font-size: 12.5px;
+  height: 600px;
+  margin-top: 10px;
+}
+
+#data-grid .ag-grid-theme .ag-body-horizontal-scroll-viewport,
+#data-grid .ag-grid-theme .ag-body-vertical-scroll-viewport {
+  scrollbar-width: thin;
+}
+
+#data-grid .data-grid-cs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#data-grid .data-grid-cs > input {
+  width: 150px;
+  height: 26px;
+  padding: 0 5px;
+  border: 2px solid #818181;
+  border-radius: 4px;
+  background-color: #f2f2f2;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+#data-grid .data-grid-cs > button {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+  background-color: #edba21;
+}
+
+#data-grid .ag-paging-panel .ag-picker-field {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  #data-table {
+    padding-left: var(--map-padding-x);
+    padding-right: var(--map-padding-x);
+  }
+}
+
+@media (max-width: 768px) {
+  #data-table h2 {
+    margin-top: 10px;
+  }
+
+  #data-grid .ag-paging-panel {
+    justify-content: center;
+  }
+
+  #data-grid .ag-paging-panel > * {
+    margin: 0;
+  }
+
+  #data-grid .ag-paging-panel .ag-paging-description,
+  #data-grid .ag-paging-panel .ag-paging-row-summary-panel {
+    display: none;
+  }
+}
