@@ -31,6 +31,7 @@ import { useTranslation } from '../common/components/LocalizationProvider';
 // import { mapIconKey, mapIcons } from '../map/core/preloadImages'
 import { useAdministrator } from '../common/util/permissions';
 import { useAttributePreference } from '../common/util/preferences';
+import { IgnitionIcon } from '../resources/imagesJsx/Images';
 
 dayjs.extend(relativeTime);
 
@@ -39,8 +40,9 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.mode === 'dark' ? '#444444' : '#d6d6d6'}`,
   },
   listItem: {
-    height: 100,
+    height: '100%',
     alignItems: 'start',
+    padding: 16,
   },
   icon: {
     width: '25px',
@@ -75,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: theme.palette.primary.main,
     fontSize: 14,
   },
   itemLocation: {
@@ -139,19 +140,7 @@ const DeviceRow = ({ data, index, style }) => {
         /> */}
         <section>
           <article className={classes.itemTitle}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              fill={position?.attributes.ignition ? '#92d050' : '#d60c0c'}
-              fillOpacity={1}
-              width={15}
-            >
-              <path
-                d="M 256,8 C 119,8 8,119 8,256 8,393 119,504 256,504 393,504 504,393 504,256 504,119 393,8 256,8 Z m 0,424 C 158.94,432 80,353 80,256 80,159 158.94,80 256,80 c 97.06,0 176,79 176,176 0,97 -78.94,176 -176,176 z"
-                style={{ opacity: 0.4 }}
-              />
-              <path d="M256 432c-97.06 0-176-79-176-176S158.94 80 256 80s176 79 176 176-78.94 176-176 176z" />
-            </svg>
+            <IgnitionIcon ignition={position?.attributes.ignition} />
 
             <div className={classes.itemDevice}>{item[devicePrimary]}</div>
           </article>
