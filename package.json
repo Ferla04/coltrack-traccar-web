@@ -20,6 +20,8 @@
     "@turf/circle": "^6.5.0",
     "@turf/turf": "^6.5.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "ag-grid-community": "^31.3.2",
+    "ag-grid-react": "^31.3.2",
     "dayjs": "^1.11.10",
     "events": "^3.3.0",
     "mapbox-gl": "^1.13.3",

@@ -2,18 +2,12 @@ import React from 'react';
 import {
   AppBar,
   Breadcrumbs,
-  Divider,
-  Drawer,
-  IconButton,
   Toolbar,
   Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-// import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from './LocalizationProvider';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,10 +64,9 @@ const PageTitle = ({ breadcrumbs }) => {
   );
 };
 
-const PageLayout = ({ menu, breadcrumbs, children }) => {
+const PageLayout = ({ breadcrumbs, children }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const navigate = useNavigate();
 
   const desktop = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -81,7 +74,7 @@ const PageLayout = ({ menu, breadcrumbs, children }) => {
 
   return desktop ? (
     <div className={classes.desktopRoot}>
-      <Drawer
+      {/* <Drawer
         variant="permanent"
         className={classes.desktopDrawer}
         classes={{ paper: classes.desktopDrawer }}
@@ -94,7 +87,7 @@ const PageLayout = ({ menu, breadcrumbs, children }) => {
         </Toolbar>
         <Divider />
         {menu}
-      </Drawer>
+      </Drawer> */}
       <div className={classes.content}>{children}</div>
     </div>
   )
