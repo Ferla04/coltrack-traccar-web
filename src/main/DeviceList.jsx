@@ -16,6 +16,9 @@ const useStyles = makeStyles(() => ({
   },
   listInner: {
     position: 'relative',
+    '& > :first-child > div': {
+      paddingTop: 10,
+    },
   },
 }));
 
@@ -54,7 +57,7 @@ const DeviceList = ({ devices }) => {
           height={height}
           itemCount={devices.length}
           itemData={devices}
-          itemSize={115}
+          itemSize={100}
           overscanCount={10}
           innerRef={listInnerEl}
         >

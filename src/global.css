@@ -54,6 +54,12 @@ body::-webkit-scrollbar-thumb {
   position: relative;
 }
 
+@media (prefers-color-scheme: dark) {
+  .quantity-buttons button {
+    --all-option-color: #30577c;
+  }
+}
+
 .quantity-buttons button:hover {
   opacity: 0.8;
   box-shadow: none;
