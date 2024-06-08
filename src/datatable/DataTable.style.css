@@ -20,7 +20,7 @@
 
 #data-grid .ag-grid-theme {
   --ag-font-size: 12.5px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 125px);
   margin-top: 10px;
 }
 
@@ -87,9 +87,11 @@
     padding-left: var(--map-padding-x);
     padding-right: var(--map-padding-x);
   }
+}
 
+@media (max-width: 900px) {
   #data-grid .ag-grid-theme {
-    height: calc(100vh - 175px);
+    height: calc(100vh - 190px);
   }
 }
 
