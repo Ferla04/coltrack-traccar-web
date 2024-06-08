@@ -45,8 +45,10 @@ const DevicesDatatable = () => {
 
   return (
     <PageLayout menu={<SettingsMenu />} breadcrumbs={['settingsTitle', 'deviceTitle']}>
-      <DataTableView data={items} columns={columns} />
-      <CollectionFab editPath="/settings/device" />
+      <div className="container-table">
+        <DataTableView data={items} columns={columns} />
+        <CollectionFab editPath="/settings/device" />
+      </div>
     </PageLayout>
   );
 };

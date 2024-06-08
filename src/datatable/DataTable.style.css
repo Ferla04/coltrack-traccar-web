@@ -1,3 +1,7 @@
+.container-table > button {
+  bottom: 10px;
+}
+
 #data-table {
   margin: 0 auto;
   padding: var(--map-padding-y) 30px;
@@ -70,9 +74,13 @@
   background-color: #227348;
 }
 
-#data-grid .ag-paging-panel .ag-picker-field {
-  display: none;
+#data-grid .ag-paging-panel.ag-unselectable {
+  margin-right: 50px;
 }
+
+/* #data-grid .ag-paging-panel .ag-picker-field {
+  display: none;
+} */
 
 @media (max-width: 960px) {
   #data-table {
@@ -81,7 +89,7 @@
   }
 
   #data-grid .ag-grid-theme {
-    height: calc(100vh - 180px);
+    height: calc(100vh - 175px);
   }
 }
 
@@ -96,6 +104,10 @@
 
   #data-grid .ag-paging-panel > * {
     margin: 0;
+  }
+
+  #data-grid .ag-paging-panel.ag-unselectable {
+    gap: 8px;
   }
 
   #data-grid .ag-paging-panel .ag-paging-description,
