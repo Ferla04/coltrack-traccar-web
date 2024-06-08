@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     gap: 9,
-    padding: '0 20px 10px',
+    padding: '0 20px',
     [theme.breakpoints.up('md')]: {
       paddingRight: 0,
       paddingLeft: 0,
@@ -40,10 +40,6 @@ const useStyles = makeStyles((theme) => ({
     },
     '& > .MuiOutlinedInput-root': {
       paddingRight: 8,
-      backgroundColor: theme.palette.mode === 'light' && '#afd8ff',
-      '& > input::placeholder': {
-        opacity: 0.7,
-      },
     },
   },
   filterPanel: {

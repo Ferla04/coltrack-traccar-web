@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     height: '100%',
     alignItems: 'start',
-    padding: 16,
   },
   icon: {
     width: '25px',

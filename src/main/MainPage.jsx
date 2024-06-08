@@ -71,10 +71,6 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: 'auto',
     gridArea: '1 / 1',
     zIndex: 4,
-    [theme.breakpoints.up('md')]: {
-      borderRadius: 10,
-      overflow: 'hidden',
-    },
   },
 }));
 
@@ -169,7 +165,7 @@ const MainPage = () => {
             )}
             <Paper
               square
-              className={`${classes.contentList}`}
+              className={`${classes.contentList} without-bg-i`}
               style={devicesOpen ? {} : { visibility: 'hidden' }}
             >
               <DeviceList devices={filteredDevices} />
