@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LinkIcon from '@mui/icons-material/Link';
-import { Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useEffectAsync } from '../reactHelper';
 import { useTranslation } from '../common/components/LocalizationProvider';
@@ -35,10 +34,6 @@ const DevicesDatatable = () => {
     }
   }, [timestamp]);
 
-  const handleExport = () => {
-    window.location.assign('/api/reports/devices/xlsx');
-  };
-
   const actionConnections = {
     key: 'connections',
     title: t('sharedConnections'),
@@ -50,9 +45,10 @@ const DevicesDatatable = () => {
 
   return (
     <PageLayout menu={<SettingsMenu />} breadcrumbs={['settingsTitle', 'deviceTitle']}>
-      <DataTableView data={items} columns={columns} />
-      <CollectionFab editPath="/settings/device" />
-      <Button onClick={handleExport} variant="text">{t('reportExport')}</Button>
+      <div className="container-table">
+        <DataTableView data={items} columns={columns} />
+        <CollectionFab editPath="/settings/device" />
+      </div>
     </PageLayout>
   );
 };

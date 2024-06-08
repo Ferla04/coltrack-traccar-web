@@ -1,3 +1,7 @@
+.container-table > button {
+  bottom: 10px;
+}
+
 #data-table {
   margin: 0 auto;
   padding: var(--map-padding-y) 30px;
@@ -16,8 +20,18 @@
 
 #data-grid .ag-grid-theme {
   --ag-font-size: 12.5px;
-  height: 600px;
+  height: calc(100vh - 125px);
   margin-top: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  #data-grid .ag-grid-theme {
+    --ag-background-color: #252525;
+    --ag-header-background-color: #252525;
+    --ag-odd-row-background-color: #232323;
+    --ag-tooltip-background-color: #232323;
+    --ag-control-panel-background-color: #232323;
+  }
 }
 
 #data-grid .ag-grid-theme .ag-body-horizontal-scroll-viewport,
@@ -33,32 +47,51 @@
 
 #data-grid .data-grid-cs > input {
   width: 150px;
-  height: 26px;
+  height: 28px;
   padding: 0 5px;
   border: 2px solid #818181;
   border-radius: 4px;
   background-color: #f2f2f2;
   margin-right: 10px;
-  font-size: 16px;
+  font-size: 17px;
+  outline: none;
 }
 
-#data-grid .data-grid-cs > button {
-  padding: 8px 10px;
+#data-grid .data-grid-cs > div > button {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  margin-bottom: 10px;
-  background-color: #edba21;
+  color: #000;
+  height: 30px;
+  margin-left: 15px;
 }
 
-#data-grid .ag-paging-panel .ag-picker-field {
-  display: none;
+#data-grid .data-grid-cs > div > button:first-child {
+  background-color: #6bb0e7;
 }
+
+#data-grid .data-grid-cs > div > button:last-child {
+  background-color: #227348;
+}
+
+#data-grid .ag-paging-panel.ag-unselectable {
+  margin-right: 50px;
+}
+
+/* #data-grid .ag-paging-panel .ag-picker-field {
+  display: none;
+} */
 
 @media (max-width: 960px) {
   #data-table {
     padding-left: var(--map-padding-x);
     padding-right: var(--map-padding-x);
+  }
+}
+
+@media (max-width: 900px) {
+  #data-grid .ag-grid-theme {
+    height: calc(100vh - 190px);
   }
 }
 
@@ -75,8 +108,28 @@
     margin: 0;
   }
 
+  #data-grid .ag-paging-panel.ag-unselectable {
+    gap: 8px;
+  }
+
   #data-grid .ag-paging-panel .ag-paging-description,
   #data-grid .ag-paging-panel .ag-paging-row-summary-panel {
     display: none;
+  }
+}
+
+#data-grid .action-buttons > div {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+}
+
+@media (max-width: 600px) {
+  #data-grid .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
   }
 }

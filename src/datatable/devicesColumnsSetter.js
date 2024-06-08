@@ -10,38 +10,47 @@ const devicesColumns = ({ setTimestamp, actionConnections, groups }) => {
     {
       headerName: t('sharedName'),
       field: 'name',
-      width: 130,
+      minWidth: 120,
+      flex: 1,
     },
     {
       headerName: t('deviceIdentifier'),
       field: 'uniqueId',
-      width: 150,
+      minWidth: 130,
+      flex: 1,
     },
     {
       headerName: t('groupParent'),
       field: 'groupId',
+      flex: 1,
+      minWidth: 80,
       valueGetter: ({ data: { groupId } }) => (
         groupId ? groups[groupId]?.name : null
       ),
-      width: 100,
     },
     {
       headerName: t('sharedPhone'),
       field: 'phone',
-      width: 150,
+      flex: 1,
+      minWidth: 130,
     },
     {
       headerName: t('deviceModel'),
       field: 'model',
+      flex: 1,
+      minWidth: 130,
     },
     {
       headerName: t('deviceContact'),
       field: 'contact',
-      width: 110,
+      flex: 1,
+      minWidth: 130,
     },
     {
       headerName: t('userExpirationTime'),
       field: 'expirationTime',
+      flex: 1,
+      minWidth: 130,
       valueGetter: ({ data: { expirationTime } }) => (
         formatTime(expirationTime, 'date')
       ),
@@ -54,7 +63,8 @@ const devicesColumns = ({ setTimestamp, actionConnections, groups }) => {
         setTimestamp,
         actionConnections,
       },
-      width: 120,
+      flex: 1,
+      minWidth: 130,
     },
   ], [t]);
 };

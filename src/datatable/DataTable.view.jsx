@@ -1,9 +1,14 @@
 import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import { Button } from '@mui/material';
 import useDataTable from './useDataTable';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './DataTable.style.css';
+
+const handleExport = () => {
+  window.location.assign('/api/reports/devices/xlsx');
+};
 
 const DataTableView = ({ data, columns }) => {
   const { gridInitialData, gridApiRef, onBtnExport, onFilterTextBoxChanged } = useDataTable(data);
@@ -11,7 +16,10 @@ const DataTableView = ({ data, columns }) => {
   return (
     <section id="data-grid">
       <div className="data-grid-cs">
-        <button type="button" onClick={onBtnExport}>CSV</button>
+        <div>
+          <Button onClick={onBtnExport}>CSV</Button>
+          <Button onClick={handleExport} variant="text">xlsx</Button>
+        </div>
 
         <input
           type="text"
