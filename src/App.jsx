@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { LinearProgress, useMediaQuery, useTheme } from '@mui/material';
+import { LinearProgress } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 // import BottomMenu from './common/components/BottomMenu';
 import SocketController from './SocketController';
@@ -24,11 +24,11 @@ const useStyles = makeStyles(() => ({
 
 const App = () => {
   const classes = useStyles();
-  const theme = useTheme();
+  // const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const desktop = useMediaQuery(theme.breakpoints.up('md'));
+  // const desktop = useMediaQuery(theme.breakpoints.up('md'));
 
   const newServer = useSelector((state) => state.session.server.newServer);
   const termsUrl = useSelector((state) => state.session.server.attributes.termsUrl);
@@ -72,9 +72,8 @@ const App = () => {
       <SocketController />
       <CachingController />
       <UpdateController />
-      {!desktop && (
-        <NavigationBar />
-      )}
+      <NavigationBar />
+
       <div className={classes.page}>
         <Outlet />
       </div>
